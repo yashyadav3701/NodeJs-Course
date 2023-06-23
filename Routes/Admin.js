@@ -11,7 +11,7 @@ router.get('/add-product',(req,res,next)=>{
 
     // res.sendFile(path.join(rootPath,'Views','add-product.html'));      //using helper function
     
-    res.render('add-product',{pageTitle:"Add Products"})
+    res.render('add-product',{PageTitle:"Add Products",path:'/admin/add-product',product:true})
 })
 
 router.post('/add-product',(req,res)=>{

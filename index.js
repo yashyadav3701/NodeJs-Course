@@ -5,6 +5,8 @@ const AdminData=require('./Routes/Admin');
 const ShopRoutes=require('./Routes/Shop')
 const app=express();
 const path=require('path')
+const templateHBS=require('express-handlebars');
+
 // // FOR MIDDLEWARE
 // app.use((req,res,next)=>{
 //     console.log('IN THE FIRST MIDDLWARE');
@@ -43,7 +45,12 @@ app.use(bodyParser.urlencoded());
 // })
 
 
-app.set('view engine','pug');
+// app.set('view engine','pug');
+
+// app.engine('hbs',templateHBS({layoutsDir:'Layout/',defaultLayout:"main-layout",extname:'hbs'}));
+// app.set('view engine','hbs');
+
+app.set('view engine','ejs');
 app.set('views','Views');
 
 app.use(express.static(path.join(__dirname,'Public')));
@@ -54,7 +61,7 @@ app.use(ShopRoutes);
 app.use((req,res,next)=>{
     // res.status(404).send('<h1>Page Not Found</h1>');
     // res.status(404).sendFile(path.join(__dirname,'Views','errorPage.html'));
-    res.status(404).render("errorPage");
+    res.status(404).render("errorPage",{PageTitle:"Error Page"});
 })
 
 app.listen(3000);
