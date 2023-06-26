@@ -1,13 +1,14 @@
 const express=require('express');
 const path=require('path');
+const ShopController=require('../controller/Shop');
+
 
 const router=express.Router();
 const AdminData=require('./Admin')
-router.get('/',(req,res,next)=>{
-    // console.log("In the home Domain");
-    console.log(AdminData.products);
-    // res.sendFile(path.join(__dirname,'../','Views','Shop.html'));
-    res.render("Shop",{prods:AdminData.products,PageTitle:"My Shop",path:"/",hasProducts:AdminData.products.length>0,shop:true});
-})
+router.get('/',ShopController.getIndex);
+router.get('/products',ShopController.getProducts);
+router.get('/cart',ShopController.getCart);
+router.get('/orders',ShopController.getOrders);
+router.get('/checkout',ShopController.getCheckout);
 
 module.exports=router;
